@@ -45,7 +45,7 @@ int main() {
     cin >> height;
     cout << "Enter your weight(kg): " << endl;
     cin >> weight;
-    cout << calcBMI(height, weight) << endl;
+    cout << "Your BMI is: " << calcBMI(height, weight) << endl;
     displayBMI(calcBMI(height, weight));
     return 0;
 }
