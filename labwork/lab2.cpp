@@ -1,10 +1,12 @@
 #include <iostream>
+#include <iomanip>
+#include <cmath>
 using namespace std;
 
 //Function to calculate BMI
 float calcBMI(float height, float weight) {
-    height = (height*height)/10000;
-    return weight/height;
+    height = height/100;
+    return weight/pow(height,2);
 }
 
 //Function to display BMI and give appropriate responses
@@ -45,7 +47,7 @@ int main() {
     cin >> height;
     cout << "Enter your weight(kg): " << endl;
     cin >> weight;
-    cout << "Your BMI is: " << calcBMI(height, weight) << endl;
+    cout << "Your BMI is: " << setprecision(5) << calcBMI(height, weight) << endl;
     displayBMI(calcBMI(height, weight));
     return 0;
 }
