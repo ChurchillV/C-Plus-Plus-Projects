@@ -1,9 +1,47 @@
 #include <iostream>
 #include <iomanip>
+#include <conio.h>
 using namespace std;
 
-bool ctf = true;
+//Global varaibles and function delcarations
+bool ctf; //Variable to note if the user chooses Celcius to Fahrenheit
+bool error_found;
 float answer;
+void prompt();
+void celcius_to_fahrenheit();
+void fahrenheit_to_celcius();
+
+//Main function
+int main() {
+    do {
+        cout << "TEMPERATURE CONVERSION PROGRAMME" << endl <<
+        endl << "What would you like to do?" <<
+        endl << "1. Celcius to Fahrenheit" << endl << 
+        "2. Fahrenheit to Celcius";
+        //User makes a selection
+        error_found = false;
+        cout << endl << "Option: ";
+        char option = getchar();
+        switch(option) {
+            case '1':
+                ctf = true;
+                celcius_to_fahrenheit();
+                break;
+            case '2':
+                ctf = false;
+                fahrenheit_to_celcius();
+                break;
+            default:
+                cout << "Invalid option. Please try again" << endl;
+                error_found = true;
+                break;
+    }} while(error_found);
+
+    return 0;
+}
+
+// Function definitions
+
 //Prompt Message (Changes depending on user's choice)
 void prompt() {
     if (ctf) {
@@ -21,10 +59,7 @@ void celcius_to_fahrenheit() {
     prompt();
     cin >> input;
     answer = (input * (9.0/5.0)) + 32.0;
-    cout << "Temperature in Fahrenheit: "
-    << fixed 
-    << setprecision(2) 
-    << answer;
+    cout << "Temperature in Fahrenheit: " << answer;
 }
 
 //Convert from Fahrenheit to Celcius C = (5*(F - 32))/9
@@ -36,31 +71,4 @@ void fahrenheit_to_celcius() {
     cout << "Temperature in Celcius: " 
     << answer
     << endl;
-}
-
-int main() {
-    cout << "TEMPERATURE CONVERTER PROGRAMME" << endl <<
-    endl << "What would you like to do?" << 
-    endl << "1. Celcius to Fahrenheit" << endl << 
-    "2. Fahrenheit to Celcius";
-    //User makes a selection
-    option_section:
-    char option;
-    cout << endl << "Option: ";
-    cin >> option;
-        switch(option) {
-        case '1':
-            celcius_to_fahrenheit();
-            break;
-        case '2':
-            ctf = false;
-            fahrenheit_to_celcius();
-            break;
-        default:
-            cout << "Invalid option. Please try again" << endl;
-            goto option_section;
-            break;
-    };
-
-    return 0;
 }
