@@ -14,8 +14,8 @@ void fahrenheit_to_celcius();
 //Main function
 int main() {
     do {
-        cout << "TEMPERATURE CONVERSION PROGRAMME" << endl <<
-        endl << "What would you like to do?" <<
+        cout << "TEMPERATURE CONVERSION PROGRAMME" << 
+        endl << endl << "What would you like to do?" <<
         endl << "1. Celcius to Fahrenheit" << endl << 
         "2. Fahrenheit to Celcius";
         //User makes a selection
@@ -69,6 +69,5 @@ void fahrenheit_to_celcius() {
     cin >> input;
     answer = (5.0*(input - 32.0))/9.0;
     cout << "Temperature in Celcius: " 
-    << answer
-    << endl;
+    << answer << endl;
 }
