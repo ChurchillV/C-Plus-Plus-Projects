@@ -20,6 +20,7 @@ int main() {
             char option;
             double base = stod(number);
             do {    //User decides between default exponent or user-defined exponent
+                isError = false;
                 cout << "Options:" <<
                 endl << "1. Set exponent" <<
                 endl << "2. Use default (number ^ 2)";
@@ -33,18 +34,14 @@ int main() {
                         cin >> exponent;
                         if(validate_input(exponent)) {  //User input for the exponent is validated
                             int exp = stoi(exponent);
-                            cout << endl << number <<   //Output
-                            " exp " << exponent <<
-                            " = " << power(base, exp);
+                            cout << endl << number << " exp " << exponent << " = " << power(base, exp);
                         }
                         else {
                             warning_message();
                         }
                         break;
                     case '2':
-                        cout << endl << number << //Output
-                            " exp " << 2 <<
-                            " = " << power(base);
+                        cout << endl << number << " exp " << 2 << " = " << power(base); //Output
                         break;
                     default:
                         warning_message(); //Error checking
@@ -62,12 +59,14 @@ int main() {
 
 //Function to check if the input is a valid number
 bool validate_input(string input) {
+    bool output;
     for(int i = 0; i < input.length(); i++) {
         if (isdigit(input[i]) || input[i] == '.') {
-            return true;
+            output =  true;
         }
-        else return false;
+        else output = false;
     }
+    return output;
 }
 
 //Function to exponentiate the function
@@ -82,7 +81,7 @@ double power(double value, int exp) {
 //Overloaded function for default exponentiation (exp 2)
 double power(double value) {
     double result = 1.0;
-    result*= value*value;
+    result *= value*value;
     return result;
 }
 
