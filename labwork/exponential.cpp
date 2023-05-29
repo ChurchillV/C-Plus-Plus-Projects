@@ -50,6 +50,7 @@ int main() {
             } while(isError);
         }
         else {
+            isError = true;
             warning_message(); //Error checking
         }
     } while(isError);
@@ -72,17 +73,15 @@ bool validate_input(string input) {
 //Function to exponentiate the function
 double power(double value, int exp) {
     double result = 1.0;
-    for(int i = 0; i < exp; i++ ) {
+    for(int i = 0; i < exp; i++) {
         result*= value;
     }
     return result;
 }
 
 //Overloaded function for default exponentiation (exp 2)
-double power(double value) {
-    double result = 1.0;
-    result *= value*value;
-    return result;
+inline double power(double value) {
+    return value*value;
 }
 
 //Inline warning message in case of invalid input 
