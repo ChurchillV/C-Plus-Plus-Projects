@@ -62,9 +62,7 @@ int main() {
 bool validate_input(string input) {
     bool output;
     for(int i = 0; i < input.length(); i++) {
-        if (isdigit(input[i]) || input[i] == '.') {
-            output =  true;
-        }
+        if (isdigit(input[i]) || input[i] == '.') output =  true;
         else output = false;
     }
     return output;

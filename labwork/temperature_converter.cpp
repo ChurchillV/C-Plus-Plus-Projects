@@ -1,5 +1,4 @@
 #include <iostream>
-#include <iomanip>
 #include <conio.h>
 using namespace std;
 
@@ -14,10 +13,8 @@ void fahrenheit_to_celcius();
 //Main function
 int main() {
     do {
-        cout << "TEMPERATURE CONVERSION PROGRAMME" << 
-        endl << endl << "What would you like to do?" <<
-        endl << "1. Celcius to Fahrenheit" << endl << 
-        "2. Fahrenheit to Celcius";
+        cout << "TEMPERATURE CONVERSION PROGRAMME" << endl << endl << "What would you like to do?" <<
+        endl << "1. Celcius to Fahrenheit" << endl << "2. Fahrenheit to Celcius";
         //User makes a selection
         error_found = false;
         cout << endl << "Option: ";

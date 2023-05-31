@@ -20,7 +20,8 @@ int main() {
         cin >> num1;
         cout << "Enter Operator (+, -, *, /): ";
         cin >> operation;
-        cout << "Enter second value: " << endl;
+        cout << "Enter second value: ";
+        cin >> num2;
         switch (operation) {
             case '+':
                 addition();
@@ -47,7 +48,6 @@ int main() {
 //Addition operation
 void addition() {
     displayExp();
-    cin >> num2;
     result = num1 + num2;
     displayResult();
 };
@@ -55,7 +55,6 @@ void addition() {
 //Subtraction operation
 void subtraction() {
     displayExp();
-    cin >> num2;
     result = num1 - num2;
     displayResult();
 };
@@ -63,7 +62,6 @@ void subtraction() {
 //Multiplication operation
 void multiplication() {
     displayExp();
-    cin >> num2;
     result = num1 * num2;
     displayResult();
 };
@@ -71,7 +69,6 @@ void multiplication() {
 //Division operation
 void division() {
     displayExp();
-    cin >> num2;
     result = num1 / num2;
     displayResult();
 };
