@@ -7,7 +7,6 @@ bool isError;
 
 int main() {
     cout << "FIBONACCI SEQUENCE GENERATOR" << endl;
-
     do {
         isError = false;
         cout << "Enter number of natural digits: ";
