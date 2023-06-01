@@ -5,17 +5,20 @@ using namespace std;
 void calc_sum();
 void validate_input();
 string number;
-bool isError;
+bool isError = false;
 
+//Main Function
 int main() {
     cout << "SUM OF NATURAL NUMBERS" << endl;
     do {
     isError = false;
     cout << "Enter the natural number to add up to: " << endl;
-    validate_input();
     cin >> number;
+    validate_input();
+    if (!isError) {
     cout << "Calculating sum..." << endl;
     calc_sum();
+    }
     } while(isError);
 
     return 0;
@@ -35,9 +38,9 @@ void calc_sum() {
 void validate_input() {
     for(int i = 0; i < number.length(); i++) {
         if (!isdigit(number[i])) {
-            isError = true;
             cout << "Please enter a valid input" <<endl;
-            return;
+            isError = true;
         }
+        else isError =  false;
     }
 }
