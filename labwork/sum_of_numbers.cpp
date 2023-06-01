@@ -14,6 +14,7 @@ int main() {
     isError = false;
     cout << "Enter the natural number to add up to: " << endl;
     cin >> number;
+    //Error checking measures;
     validate_input();
     if (!isError) {
     cout << "Calculating sum..." << endl;
