@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 using namespace std;
 
 //Function declarations and Global variable
@@ -49,10 +48,7 @@ int main() {
                 }
             } while(isError);
         }
-        else {
-            isError = true;
-            warning_message(); //Error checking
-        }
+        else warning_message(); //Error checking
     } while(isError);
 
     return 0;
@@ -69,17 +65,17 @@ bool validate_input(string input) {
 }
 
 //Function to exponentiate the function
-double power(double value, int exp) {
+double power(double n, int exp) {
     double result = 1.0;
     for(int i = 0; i < exp; i++) {
-        result*= value;
+        result*= n;
     }
     return result;
 }
 
 //Overloaded function for default exponentiation (exp 2)
-inline double power(double value) {
-    return value*value;
+inline double power(double n) {
+    return n*n;
 }
 
 //Inline warning message in case of invalid input 
