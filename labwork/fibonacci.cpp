@@ -25,7 +25,7 @@ int main() {
 int fibonacci(int num) {
     int result = 0;
     if(num == 1 || num == 0) {
-        result += 1;
+        result = num;
     }
     else {
          result += fibonacci(num-1) + fibonacci(num-2);
