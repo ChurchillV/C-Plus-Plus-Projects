@@ -17,11 +17,13 @@ class Quadrilateral {
 };
 
 int main() {
-    //Create two objects from the Quadrilateral class
-    Quadrilateral square(10,10), rectangle(5,10);
-    // square.set_values(10,10);
-    // rectangle.set_values(5,10);
-
+    //Create two objects of the Quadrilateral class
+    int height,length;
+    cout << "Enter height: ";
+    cin >> height;
+    cout << "Enter length: ";
+    cin >> length;
+    Quadrilateral square(height,height),rectangle(height,length);
     cout << "Area of rectangle: " << square.area() << endl;
     cout << "Area of square: " << rectangle.area() << endl;
     return 0;
