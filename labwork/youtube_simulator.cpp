@@ -22,9 +22,11 @@ class YoutubeChannel {
             cout << "Owner Name: " << OwnerName << endl;
             cout << "Number of Subscribers: " << SubscriberCount << endl;
             cout << "Videos: " << endl;
-            for (string videoTitle : PublishedVideoTitles) {
+            if (PublishedVideoTitles.size() != 0) {
+                for (string videoTitle : PublishedVideoTitles) {
                 cout << videoTitle << endl;
-            }
+            }}
+            else cout << "No Videos Yet" << endl;
         } 
 
         void Subscribe() {
@@ -55,21 +57,54 @@ class YoutubeChannel {
         }
 };
 
+YoutubeChannel channelList[10];
+
 int main() {
-
     cout << "YouTube Channel creation Simulator (CLI Version)" << endl;
-    YoutubeChannel ytChannel("Kicking it with Vince", "Vince Churchill");
+    bool running = false;
+    string channelName, ownerName, videoTitle;
+    int channelCount = 0;
+    char option;
+    do {
+        cout << "1. New Channel" << endl;
+        cout << "2. Check Channel Details" << endl;
+        cout << "Option: " << endl;
+        cin >> option;
+        cin.ignore();
+        switch (option)
+        {
+        case '1':
+        {
+            cout << "Enter Channel name: " << endl;
+            getline(cin, channelName);
+            cout << "Channel Owner: " << endl;
+            getline(cin, ownerName);
+            cout << "Creating Channel..." << endl;
+            YoutubeChannel ytChannel(channelName, ownerName);
+            cout << "Channel Successfully created!" << endl;
+            ytChannel.GetInfo();
+            cout << "Channel Successfully created" << endl << "Add your first video title: ";
+            string title;
+            getline(cin,title);
+            ytChannel.PublishVideo(title);
+            ytChannel.unSubscribe();
+            cout << "Adding your first 20 subs" << endl;
+            for (int i = 0; i < 20; i++) {
+                ytChannel.Subscribe();
+            }
+            ytChannel.GetInfo();
+            channelList[channelCount] = ytChannel;
+            channelCount++;
+            break;
+        }
 
-    cout << "Channel Successfully created" << endl << "Add a video title: ";
-    string title;
-    getline(cin,title);
-    ytChannel.PublishVideo(title);
-    ytChannel.unSubscribe();
-    ytChannel.GetInfo();
+        case '2':
+            cout << "Functionality not ready";
+            break;
 
-    for (int i = 0; i < 20; i++) {
-        ytChannel.Subscribe();
-    }
-    ytChannel.GetInfo();
+        default:
+            break;
+        }
+    } while(running);
     return 0;
 }
