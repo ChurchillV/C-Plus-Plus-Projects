@@ -1,5 +1,6 @@
 #include <iostream>
 #include <list>
+#include <string>
 using namespace std;
 
 class YoutubeChannel {
@@ -61,7 +62,7 @@ int main() {
 
     cout << "Channel Successfully created" << endl << "Add a video title: ";
     string title;
-    cin >> title;
+    getline(cin,title);
     ytChannel.PublishVideo(title);
     ytChannel.unSubscribe();
     ytChannel.GetInfo();
