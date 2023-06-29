@@ -5,24 +5,18 @@ class CPolygon {
     protected:
         int width, height;
     public:
-        void set_values(int a, int b) {
-            width = a, height = b;
-        };
+        void set_values(int a, int b) { width = a, height = b; };
 };
 
 //Derived Classes
 class CRectangle : public CPolygon {
     public:
-        int area() {
-            return width * height;
-        }
+        int area() { return width * height; }
 };
 
 class CTriangle : public CPolygon {
     public:
-        int area() {
-            return (width * height)/2;
-        }
+        int area() { return (width * height)/2; }
 };
 
 int main() {
