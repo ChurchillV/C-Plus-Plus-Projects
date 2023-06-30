@@ -23,7 +23,7 @@ class tollBooth {
         void display() const {  //Permission to mutate values in denied
             cout << "Cars gone past: " << no_of_cars; 
             cout << '\t' << "Total funds received: GHC " << 
-            cash_total << endl;
+            cash_total << '\a' << endl;
         }
 };
 
@@ -43,11 +43,11 @@ int main() {
     int c = getch();
     if (c == y) {
         booth1.payingCar();
-        cout << "Paying Car Added" << endl;
+        cout << "Paying Car Added\a" << endl;
     }
     if(c == n) {
         booth1.nopayCar();
-        cout << "Non-paying Car Added" << endl; 
+        cout << "Non-paying Car Added\a" << endl; 
     }
     if(c == ESC) {
         booth1.display();
