@@ -5,10 +5,8 @@ class Time {
     private:
         int hours, minutes, seconds;
     public:
-        Time() { hours = minutes = seconds = 0; }
-        Time(int hr, int min, int sec) {
-            hours = hr, minutes = min, seconds = sec;
-        }
+        Time() : seconds(0), minutes(0), hours(0) {}
+        Time(int hr, int min, int sec) : seconds(sec), minutes(min), hours(hr) {}
         void display() {
             cout << hours << ":" << minutes << ":" << seconds << endl;
         }
