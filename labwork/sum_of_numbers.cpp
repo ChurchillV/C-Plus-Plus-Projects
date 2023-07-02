@@ -29,7 +29,7 @@ int main() {
 void calc_sum() {
     int ref = stoi(number);
     int start = 0;
-    for(int i = 0; i < stoi(number)+1; i++) {
+    for(int i = 0; i < stoi(number); i++) {
         start += ref;
         ref--;
     }

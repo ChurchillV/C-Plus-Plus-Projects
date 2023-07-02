@@ -20,7 +20,7 @@ class tollBooth {
         void nopayCar() {
             no_of_cars += 1;
         };
-        void display() const {  //Permission to mutate values in denied
+        void display() const {  //Permission to mutate values is denied
             cout << "Cars gone past: " << no_of_cars; 
             cout << '\t' << "Total funds received: GHC " << 
             cash_total << '\a' << endl;

@@ -10,17 +10,19 @@ class Time {
         void display() {
             cout << hours << ":" << minutes << ":" << seconds << endl;
         }
-        void add_times(Time a, Time b) { 
-            seconds = (a.seconds + b.seconds) % 60;
-            minutes = (a.minutes + b.minutes + ((a.seconds + b.seconds)/60)) % 60;
-            hours = (a.hours + b.hours + ((a.minutes + b.minutes)/60)) % 24;
+        Time add_times(Time a, Time b) { 
+            Time temp;
+            temp.seconds = (a.seconds + b.seconds) % 60;
+            temp.minutes = (a.minutes + b.minutes + ((a.seconds + b.seconds)/60)) % 60;
+            temp.hours = (a.hours + b.hours + ((a.minutes + b.minutes)/60)) % 24;
+            return temp;
         }
 };
 
 int main() {
-    Time t1(12,43,15), t2(4,13,56), t3_unInit;
+    Time t1(12,43,15), t2 = t1, t3_unInit;
     int hr, min, sec;
-    t3_unInit.add_times(t1, t2);
+    t3_unInit = t3_unInit.add_times(t1, t2);
     t1.display();
     t2.display();
     t3_unInit.display();
