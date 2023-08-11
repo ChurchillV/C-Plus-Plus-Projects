@@ -110,7 +110,7 @@ int main() {
                 break;
 
                 default:
-                    cout << "\nInvalud option";
+                    cout << "\nInvalid option";
                     break;
             }
             delete rect1;
