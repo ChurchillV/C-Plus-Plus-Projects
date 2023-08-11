@@ -11,8 +11,6 @@ class Triangle : public Polygon {
     private:
         float height, base;
     public:
-        Triangle() {}
-        Triangle(float new_height, float new_base) : height(new_height), base(new_base) {}
         void getDimensions() {
             cout << "\nEnter triangle height: ";
             cin >> height;
@@ -29,8 +27,6 @@ class Rectangle : public Polygon {
     private:
         float height, width;
     public: 
-        Rectangle() {}
-        Rectangle(float new_height, float new_width) : height(new_height), width(new_width) {}
         void getDimensions() {
             cout << "Enter rectangle height: ";
             cin >> height;
@@ -79,8 +75,8 @@ int main() {
         if (poly) {
             cout << "\nChoose a Polygon to compare it to:\n1 - Rectangle\n2 - Triangle\nOption: ";
             int option;
-            Rectangle *rect1 = new Rectangle();
-            Triangle *tri1 = new Triangle();
+            Rectangle *rect1 = new Rectangle;
+            Triangle *tri1 = new Triangle;
             cin >> option;
             switch (option) {
                 case 1:
