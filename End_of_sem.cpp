@@ -1,5 +1,6 @@
 #include <iostream>
-#include <math.h>
+#include <math.h>   // Gives access to the floor in the toMixedFraction function  
+#include <numeric>  // Gives access to the gcd function for reducing fractions to simplest form
 using namespace std;
 
 class Fraction{
@@ -7,54 +8,52 @@ class Fraction{
         int numerator, denominator, whole_number;
 
     public:
-    // Default constructor
-        Fraction() {}
     // Constructor function to create a new fraction with no whole number
-        Fraction(int new_numerator, int new_denominator) {
-            numerator = new_numerator;
-            denominator = new_denominator;
+        Fraction(int num, int denum) {
+            numerator = num;
+            denominator = denum;
             whole_number = 0;
         }
     // Constructor function to create a new fraction with a whole number
-        Fraction(int new_numerator, int new_denominator, int new_whole_number) {
-            numerator = new_numerator;
-            denominator = new_denominator;
-            whole_number = new_whole_number;
+        Fraction(int num, int denum, int whole_num) {
+            numerator = num;
+            denominator = denum;
+            whole_number = whole_num;
         }
 
-    // Overloaded Addition operator for fractions
+    // Overloaded Addition operator for fractions (Converts mixed fractions to improper fractions before operation)
         Fraction operator+(Fraction& op2) {
-            int numerator_sum, denominator_sum; // Temporary values to store the results of the addition
+            int num_sum, denum_sum; // Temporary values to store the results of the addition
         // Check if either fraction is mixed or not, and convert to an improper fraction
-            if (whole_number) { // Check if the whole number is not 0
+            if (whole_number != 0) { // Check if the whole number is not 0
                 mixed_to_improper(*this); // Convert the mixed fraction to an improper fraction (*this refers to the object itself)
             }
         // Now I want to do same for the other fraction
-            if (op2.whole_number) {
+            if (op2.whole_number != 0) {
                 mixed_to_improper(op2); 
             }
         // Now Addition can take place
         // Check if the denominators are the same. If yes, add the numerators directly
             if (denominator == op2.denominator) {
-                numerator_sum = numerator + op2.numerator;
-                denominator_sum = denominator;
+                num_sum = numerator + op2.numerator;
+                denum_sum = denominator;
             }
         // Otherwise, there's a different method of addition
             else {
-                numerator_sum = (op2.denominator * numerator) + (denominator * op2.numerator);
-                denominator_sum = denominator * op2.denominator;
+                num_sum = (op2.denominator * numerator) + (denominator * op2.numerator);
+                denum_sum = denominator * op2.denominator;
             }
-        // Output the operation taking place
-            showFraction();
-            cout << " + ";
-            op2.showFraction();
-            cout << " = ";
-            return Fraction(numerator_sum, denominator_sum);
+        // Reduce the fraction to it's simplest terms using the gcd function to find a common divisor
+            int common_divisor = gcd(num_sum, denum_sum);
+            num_sum /= common_divisor; // Reduce the numerator to its simplest form
+            denum_sum /= common_divisor; // Reduce the denominator as well
+        // Display the operation taking place
+            showFraction(); cout << " + "; op2.showFraction(); cout << " = ";
+            return Fraction(num_sum, denum_sum);
         };
 
     // Overloaded Multiplication operator for fractions
         Fraction operator*(Fraction& op2) {
-            int numerator_sum, denominator_sum; // Temporary values to store the results of the addition
         // Check if either fraction is mixed or not, and convert to an improper fraction
             if (whole_number) {
                 mixed_to_improper(*this);
@@ -64,14 +63,15 @@ class Fraction{
                 mixed_to_improper(op2);
             }
         // Multiply the numerators and the denominators and return a new Fraction object at the end
-            int new_numerator = numerator * op2.numerator;
-            int new_denominator = denominator * op2.denominator;
-        // Output the operation taking place
-            showFraction();
-            cout << " * ";
-            op2.showFraction();
-            cout << " = ";
-            return Fraction(new_numerator, new_denominator);
+            int num = numerator * op2.numerator;
+            int denum = denominator * op2.denominator;
+         // Reduce the fraction to it's simplest terms using the gcd function to find a common divisor
+            int common_divisor = gcd(num, denum);
+            num /= common_divisor; // Reduce the numerator to its simplest form
+            denum /= common_divisor; // Reduce the denominator as well
+        // Display the operation taking place
+            showFraction(); cout << " * "; op2.showFraction(); cout << " = ";
+            return Fraction(num, denum);
         };
 
     // Function to convert fractions as decimals
@@ -81,8 +81,7 @@ class Fraction{
             }
             showFraction();
             cout << " in decimal form is ";
-            float decimal_value = (float)numerator/(float)denominator;
-            return decimal_value;
+            return (float)numerator/(float)denominator;
         };
 
     // Virtual function to display fractions, Different for mixed fractions
@@ -94,7 +93,14 @@ class Fraction{
         friend void mixed_to_improper(Fraction& mixed_fraction);
 };
 
-class ProperFraction : public Fraction {};
+class ProperFraction : public Fraction {
+    public:
+    ProperFraction(int num, int denum) : Fraction(num, denum) {
+        numerator = num;
+        denominator = denum;
+        whole_number = 0;
+    }
+};
 
 class ImproperFraction : public Fraction {
     private:
@@ -102,15 +108,14 @@ class ImproperFraction : public Fraction {
 
     public:
     // Constructor function to create a Mixed Fraction (whole number is not 0)
-        ImproperFraction(int new_numerator, int new_denominator, int new_whole_number) {
-            numerator = new_numerator;
-            denominator = new_denominator;
-            whole_number = new_whole_number;
-            if (whole_number) {
+        ImproperFraction(int num, int denum, int whole_num) : Fraction(num, denum, whole_num) {
+            numerator = num;
+            denominator = denum;
+            whole_number = whole_num;
+            if (whole_number != 0) {
                 mixed = true;
             }
         } 
-
 
     // Convert improper fractions into mixed fractions (Eg. 7/2 = 3(1/2))
         void toMixedFraction() {
@@ -133,7 +138,7 @@ class ImproperFraction : public Fraction {
 
         void showFraction() const {
         // First check if the fraction is mixed or not
-            if (mixed) { // If the improper fraction is mixed 
+            if (whole_number != 0) { // If the improper fraction is mixed 
                 cout << whole_number <<"(" << numerator << "/" << denominator << ") ";
             }
             else { // Otherwise display it the regular way
@@ -152,10 +157,9 @@ void mixed_to_improper(Fraction& mixed_fraction) {
 
 int main() {
 // List of fractions for the various questions
-    Fraction fraction1(1,2); // 1/2
-    Fraction fraction2(3,4,2); // 2(3/4)
-    Fraction fraction3(5,3); // 5/3
-
+    ProperFraction fraction1(1,2); // 1/2
+    ImproperFraction fraction2(3,4,2); // 2(3/4)
+    ImproperFraction fraction3(5,3,0); // 5/3
 // Question A (1/2 + 1/2)
     cout << "\tQuestion A: \n";
     Fraction result = fraction1 + fraction1;
@@ -178,7 +182,7 @@ int main() {
     cout << "\tQuestion D: \n";
     result = fraction2 * fraction3;
     result.showFraction(); // Output: 11/4  * 5/3  = 55/12
-    cout << endl << endl;
+    cout << endl << endl; 
 
 // Question F (1/2 in decimal form)
     cout << "\tQuestion F: \n";
