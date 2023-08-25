@@ -95,11 +95,7 @@ class Fraction{
 
 class ProperFraction : public Fraction {
     public:
-    ProperFraction(int num, int denum) : Fraction(num, denum) {
-        numerator = num;
-        denominator = denum;
-        whole_number = 0;
-    }
+    ProperFraction(int num, int denum) : Fraction(num, denum) {}
 };
 
 class ImproperFraction : public Fraction {
@@ -109,10 +105,7 @@ class ImproperFraction : public Fraction {
     public:
     // Constructor function to create a Mixed Fraction (whole number is not 0)
         ImproperFraction(int num, int denum, int whole_num) : Fraction(num, denum, whole_num) {
-            numerator = num;
-            denominator = denum;
-            whole_number = whole_num;
-            if (whole_number != 0) {
+            if (whole_num != 0) {
                 mixed = true;
             }
         } 
