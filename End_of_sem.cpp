@@ -90,7 +90,7 @@ class Fraction{
         }
 
     // Friend function to help convert mixed fractions to improper fractions
-        friend void mixed_to_improper(Fraction& mixed_fraction);
+        friend void mixed_to_improper(Fraction &fraction);
 };
 
 class ProperFraction : public Fraction {
@@ -141,11 +141,11 @@ class ImproperFraction : public Fraction {
 };
 
 // Function to convert mixed fractions to improper fractions within the Fraction class
-void mixed_to_improper(Fraction& mixed_fraction) {
-    ImproperFraction temp(mixed_fraction.numerator, mixed_fraction.denominator, mixed_fraction.whole_number); // Create a temporary improper fraction object
-    temp.toImproperFraction(); // Convert it from mixed_fraction to an improper fraction
-    mixed_fraction.numerator = temp.numerator; // Update the value of the numerator
-    mixed_fraction.whole_number = 0; // Set the whole number to zero
+void mixed_to_improper(Fraction& fract) {
+    ImproperFraction temp(fract.numerator, fract.denominator, fract.whole_number); // Create a temporary improper fraction object
+    temp.toImproperFraction(); // Convert it from fraction to an improper fract
+    fract.numerator = temp.numerator; // Update the value of the numerator
+    fract.whole_number = 0; // Set the whole number to zero
 };
 
 int main() {
@@ -187,7 +187,7 @@ int main() {
     cout << fraction3.toDecimal(); // Output: 5/3  in decimal form is 1.66667
     cout << endl << endl;
 
-    // Question G (2(3/4) in decimal form)
+    // Question H (2(3/4) in decimal form)
     cout << "\tQuestion H: \n";
     cout << fraction2.toDecimal(); // Output: 11/4  in decimal form is 2.75
     cout << endl << endl;
